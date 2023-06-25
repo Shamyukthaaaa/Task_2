@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Library Management System - Cart</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <div class="menu-bar">
+        <ul class="menu">
+          <li><a href="home.html">Home</a></li>
+          <li><a href="book-list.html">Books</a></li>
+          <li><a href="search.html">Search</a></li>
+          <li><a href="availabile.html">Availability</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="cart.html">Cart</a></li>
+          <li><a href="login.html">LogIn</a></li>
+          <li><a href="signup.html">Signup</a></li>
+          
+        </ul>
+  <div class="container">
+  <div class="container">
+    <h1>Library Management System - Cart</h1>
+    <div id="cart">
+        <h3>Cart</h3>
+        <ul id="cart-items"></ul>
+        <p>Total: <span id="cart-total">0</span> items</p>
+      </div>
+      
+      <div class="book">
+        <h3>Book Title</h3>
+        <p>Author Name</p>
+        <p class="availability">Available: <span id="available-copies">5</span> copies</p>
+        <button onclick="addToCart()">Checkout</button>
+      </div>
+      
+  </div>
+
+  <script>
+    var cartItems = [];
+var cartTotal = 0;
+
+function addToCart() {
+  var bookTitle = document.querySelector('.book h3').textContent;
+  var availableCopiesElement = document.getElementById('available-copies');
+  var availableCopies = parseInt(availableCopiesElement.textContent);
+
+  if (availableCopies > 0) {
+    availableCopies--;
+    availableCopiesElement.textContent = availableCopies;
+
+    cartItems.push(bookTitle);
+    cartTotal++;
+    updateCart();
+  }
+}
+
+function updateCart() {
+  var cartItemsElement = document.getElementById('cart-items');
+  var cartTotalElement = document.getElementById('cart-total');
+
+  cartItemsElement.innerHTML = '';
+  cartItems.forEach(function(item) {
+    var li = document.createElement('li');
+    li.textContent = item;
+    cartItemsElement.appendChild(li);
+  });
+
+  cartTotalElement.textContent = cartTotal;
+}
+
+
+  </script>
+</body>
+</html>

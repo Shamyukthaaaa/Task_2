@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Library Management System - Book List</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body class="image">
+    <div class="menu-bar">
+        <ul class="menu">
+          <li><a href="home.html">Home</a></li>
+          <li><a href="book-list.html">Books</a></li>
+          <li><a href="search.html">Search</a></li>
+          <li><a href="availabile.html">Availability</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="cart.html">Cart</a></li>
+          <li><a href="login.html">LogIn</a></li>
+          <li><a href="signup.html">Signup</a></li>
+        </ul>
+      </div>
+  <div class="container">
+    <h1 class="head">Library Management System - Book List</h1>
+    <div id="book-list"></div>
+  </div>
+
+  <script>
+function fetchBooks() {
+    return [
+      { title: "Book 1", author: "Author 1", details: "Details 1" },
+      { title: "Book 2", author: "Author 2", details: "Details 2" },
+      { title: "Book 3", author: "Author 3", details: "Details 3" },
+      { title: "Book 4", author: "Author 4", details: "Details 4" },
+      { title: "Book 5", author: "Author 5", details: "Details 5" },
+      { title: "Book 6", author: "Author 6", details: "Details 6" },
+      { title: "Book 7", author: "Author 7", details: "Details 7" },
+      { title: "Book 8", author: "Author 8", details: "Details 8" },
+      { title: "Book 9", author: "Author 9", details: "Details 9" },
+
+
+
+
+    ];
+  }
+  
+  function renderBookList(books) {
+    var bookListElement = document.getElementById("book-list");
+    
+    books.forEach(function(book) {
+      var bookCard = document.createElement("div");
+      bookCard.className = "book-card";
+  
+      var titleElement = document.createElement("h3");
+      titleElement.className = "book-title";
+      titleElement.textContent = book.title;
+  
+      var authorElement = document.createElement("p");
+      authorElement.className = "book-author";
+      authorElement.textContent = "By " + book.author;
+  
+      var detailsElement = document.createElement("p");
+      detailsElement.className = "book-details";
+      detailsElement.textContent = book.details;
+  
+      bookCard.appendChild(titleElement);
+      bookCard.appendChild(authorElement);
+      bookCard.appendChild(detailsElement);
+  
+      bookListElement.appendChild(bookCard);
+    });
+  }
+  
+  document.addEventListener("DOMContentLoaded", function() {
+    var books = fetchBooks();
+    renderBookList(books);
+  });
+  
+  </script>
+</body>
+</html>

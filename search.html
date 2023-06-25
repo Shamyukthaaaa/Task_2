@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Library Management System - Book Search</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  
+</head>
+<body>
+    <div class="menu-bar">
+        <ul class="menu">
+          <li><a href="home.html">Home</a></li>
+          <li><a href="book-list.html">Books</a></li>
+          <li><a href="search.html">Search</a></li>
+          <li><a href="availabile.html">Availability</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="cart.html">Cart</a></li>
+          <li><a href="login.html">LogIn</a></li>
+          <li><a href="signup.html">Signup</a></li>
+
+        </ul>
+      </div>
+  <div class="container">
+    <h1>Library Management System - Book Search</h1>
+    <input type="text" id="search-input" placeholder="Search for books">
+    <br><br><br>
+    <ol id="search-results" style="background-color: aliceblue;"></ol>
+  </div>
+
+  <script>
+    // Book data (replace with your own data or fetch from backend)
+var books = [
+    { title: "Book 1", author: "Author 1", genre: "Genre 1", year: 2021 },
+    { title: "Book 2", author: "Author 2", genre: "Genre 2", year: 2022 },
+    { title: "Book 3", author: "Author 3", genre: "Genre 3", year: 2023 },
+    // Add more books as needed
+  ];
+  
+  // Function to perform search and display suggestions
+  function searchBooks(query) {
+    var searchResultsElement = document.getElementById("search-results");
+    searchResultsElement.innerHTML = ""; // Clear previous results
+  
+    if (query.trim() === "") {
+      return; // Empty query, no suggestions
+    }
+  
+    var results = books.filter(function(book) {
+      return (
+        book.title.toLowerCase().includes(query.toLowerCase()) ||
+        book.author.toLowerCase().includes(query.toLowerCase()) ||
+        book.genre.toLowerCase().includes(query.toLowerCase()) ||
+        String(book.year).includes(query)
+      );
+    });
+  
+    results.forEach(function(book) {
+      var listItem = document.createElement("li");
+      listItem.textContent = book.title;
+      listItem.addEventListener("click", function() {
+        // Perform action when a suggestion is clicked (e.g., navigate to book details page)
+        console.log("Clicked:", book.title);
+      });
+      searchResultsElement.appendChild(listItem);
+    });
+  }
+  
+  // Get search input element
+  var searchInput = document.getElementById("search-input");
+  
+  // Perform search on input change
+  searchInput.addEventListener("input", function() {
+    var query = searchInput.value;
+    searchBooks(query);
+  });
+  </script>
+</body>
+</html>
